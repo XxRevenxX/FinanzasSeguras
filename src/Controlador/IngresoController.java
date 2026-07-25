@@ -8,20 +8,27 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import Vista.FrmIngreso;
+import Vista.FrmGasto;
 import Conexion.ConexionDB;
+import Controlador.GastoController;
 
 public class IngresoController implements ActionListener {
     private FrmIngreso ventana;
     private int idUsuario; // Aquí guardamos de quién es la sesión actual
-    private int idSeleccionado = -1; // Aquí guardamos el ID del ingreso que toques en la tabla
+    private int idSeleccionado = -1; // Aquí guardamos el ID del ingreso que se toque en la tabla
 
     public IngresoController(FrmIngreso ventana, int idUsuario) {
         this.ventana = ventana;
         this.idUsuario = idUsuario;
+        //Botones del CRUD
         this.ventana.btnGuardar.addActionListener(this);
         this.ventana.btnActualizar.addActionListener(this);
         this.ventana.btnBorrar.addActionListener(this);
         this.ventana.btnLimpiar.addActionListener(this);
+        //Botones del menu izquierdo
+        this.ventana.btnEgreso.addActionListener(this);
+        this.ventana.btnCerrarSesion.addActionListener(this);
+        this.ventana.btnReporte.addActionListener(this);
         
         // Llenamos la tabla al abrir la ventana
         mostrarIngresos();
@@ -40,6 +47,12 @@ public class IngresoController implements ActionListener {
         }
         if (e.getSource() == ventana.btnLimpiar){
             limpiarCampos();
+        }
+        if (e.getSource() == ventana.btnEgreso) {
+            abrirVentanaGasto();
+        }
+        if (e.getSource() == ventana.btnCerrarSesion) {
+            cerrarSesion();
         }
     }
     
@@ -163,6 +176,21 @@ public class IngresoController implements ActionListener {
         ventana.cmbTipo.setSelectedIndex(0);
     }
     
+    private void abrirVentanaGasto() {
+        FrmGasto ventanaGasto = new FrmGasto();
+        new GastoController(ventanaGasto, this.idUsuario);
+        ventanaGasto.setLocationRelativeTo(null);
+        ventanaGasto.setVisible(true);
+        ventana.dispose();
+    }
+
+    private void cerrarSesion() {
+        Vista.InicioSesion ventanaLogin = new Vista.InicioSesion();
+        InicioSesionController controlador = new InicioSesionController(ventanaLogin);
+        ventanaLogin.setLocationRelativeTo(null);
+        ventanaLogin.setVisible(true);
+        ventana.dispose();
+    }
     // --- MÉTODO PARA DIBUJAR LA TABLA ---
     private void mostrarIngresos() {
         DefaultTableModel modelo = new DefaultTableModel();

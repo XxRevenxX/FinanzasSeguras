@@ -240,7 +240,7 @@ public class FrmRegistro extends javax.swing.JFrame {
                             .addComponent(jLabel22)
                             .addComponent(jLabel10)
                             .addComponent(btnCerrarSesion))
-                        .addGap(0, 141, Short.MAX_VALUE)))
+                        .addGap(0, 144, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -313,7 +313,7 @@ public class FrmRegistro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JButton btnCerrarSesion;
     public javax.swing.JButton btnCrearUsuario;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
 import java.time.LocalDate;
@@ -17,6 +13,8 @@ public class FrmGasto extends javax.swing.JFrame {
      */
     public FrmGasto() {
         initComponents();
+        setResizable(false);
+
     }
 
     /**
@@ -51,6 +49,9 @@ public class FrmGasto extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         btnGuardar4 = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         paneTabla = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,7 +132,7 @@ public class FrmGasto extends javax.swing.JFrame {
                             .addComponent(btnCerrarSesion)
                             .addComponent(btnEgreso)
                             .addComponent(btnReporte))
-                        .addGap(0, 141, Short.MAX_VALUE)))
+                        .addGap(0, 144, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -190,7 +191,7 @@ public class FrmGasto extends javax.swing.JFrame {
 
         btnGuardar4.setBackground(new java.awt.Color(26, 17, 14));
         btnGuardar4.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar4.setText("Guardar Ingreso");
+        btnGuardar4.setText("Guardar Gasto");
         btnGuardar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardar4ActionPerformed(evt);
@@ -199,7 +200,34 @@ public class FrmGasto extends javax.swing.JFrame {
 
         jLabel34.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(203, 165, 105));
-        jLabel34.setText("Datos de ingreso");
+        jLabel34.setText("Datos de Gasto");
+
+        btnActualizar.setBackground(new java.awt.Color(26, 17, 14));
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar Gasto");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnBorrar.setBackground(new java.awt.Color(26, 17, 14));
+        btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBorrar.setText("Guardar Ingreso");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setBackground(new java.awt.Color(26, 17, 14));
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -208,17 +236,23 @@ public class FrmGasto extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtConcepto4)
                     .addComponent(jLabel19)
-                    .addComponent(txtConcepto4, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
-                    .addComponent(txtMonto4, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21)
-                    .addComponent(txtFecha4, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33)
                     .addComponent(cmbTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar4)
-                    .addComponent(jLabel34))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(jLabel34)
+                    .addComponent(txtMonto4)
+                    .addComponent(txtFecha4)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(btnActualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimpiar)))
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,9 +275,14 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addComponent(jLabel33)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
                 .addComponent(btnGuardar4)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnBorrar)
+                    .addComponent(btnLimpiar))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -259,7 +298,7 @@ public class FrmGasto extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(paneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(paneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -269,12 +308,9 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addComponent(jLabel32)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(paneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(paneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,8 +320,7 @@ public class FrmGasto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,21 +336,28 @@ public class FrmGasto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresoActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        InicioSesion ventanaInicio = new InicioSesion();
-        ventanaInicio.setLocationRelativeTo(null);
-        ventanaInicio.setVisible(true);
 
-        this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void txtFecha4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFecha4ActionPerformed
-        // TODO add your handling code here:
-        LocalDate.now().toString();
+
     }//GEN-LAST:event_txtFecha4ActionPerformed
 
     private void btnGuardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar4ActionPerformed
 
     }//GEN-LAST:event_btnGuardar4ActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,88 +392,39 @@ public class FrmGasto extends javax.swing.JFrame {
             public void run() {
                 // Creamos la ventana y su controlador juntos
                 FrmGasto ventana = new FrmGasto();
-                Controlador.GastoController controlador = new Controlador.GastoController(ventana);
+
                 ventana.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnEgreso;
-    public javax.swing.JButton btnGuardar;
-    public javax.swing.JButton btnGuardar1;
-    public javax.swing.JButton btnGuardar2;
-    public javax.swing.JButton btnGuardar3;
+    public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnBorrar;
+    public javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JButton btnEgreso;
     public javax.swing.JButton btnGuardar4;
-    private javax.swing.JButton btnIngreso;
-    private javax.swing.JButton btnReporte;
-    public javax.swing.JComboBox<String> cmbTipo;
-    public javax.swing.JComboBox<String> cmbTipo1;
-    public javax.swing.JComboBox<String> cmbTipo2;
-    public javax.swing.JComboBox<String> cmbTipo3;
+    public javax.swing.JButton btnIngreso;
+    public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnReporte;
     public javax.swing.JComboBox<String> cmbTipo4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
+    public javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JScrollPane paneTabla;
-    public javax.swing.JTextField txtConcepto;
-    public javax.swing.JTextField txtConcepto1;
-    public javax.swing.JTextField txtConcepto2;
-    public javax.swing.JTextField txtConcepto3;
     public javax.swing.JTextField txtConcepto4;
-    public javax.swing.JTextField txtFecha;
-    public javax.swing.JTextField txtFecha1;
-    public javax.swing.JTextField txtFecha2;
-    public javax.swing.JTextField txtFecha3;
     public javax.swing.JTextField txtFecha4;
-    public javax.swing.JTextField txtMonto;
-    public javax.swing.JTextField txtMonto1;
-    public javax.swing.JTextField txtMonto2;
-    public javax.swing.JTextField txtMonto3;
     public javax.swing.JTextField txtMonto4;
     // End of variables declaration//GEN-END:variables
 }

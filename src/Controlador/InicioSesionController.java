@@ -5,6 +5,7 @@ import Modelo.UsuarioDB;
 import Vista.InicioSesion;
 import Vista.FrmRegistro;
 import Vista.FrmIngreso;
+import Vista.FrmPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -44,16 +45,16 @@ public class InicioSesionController implements ActionListener {
 
         if (usuarioLogueado != null) {
             JOptionPane.showMessageDialog(ventanaLogin, "¡Bienvenido, " + usuarioLogueado.getNombre() + "!");
-            
-            FrmIngreso ventanaIngreso = new FrmIngreso();
-            
-            IngresoController controlador = new IngresoController(ventanaIngreso, usuarioLogueado.getId_usuario());
-            
-            ventanaIngreso.setVisible(true);
-            ventanaIngreso.setLocationRelativeTo(null);
-            ventanaLogin.dispose(); 
-            
-        } else {
+
+            // Abrimos el menú Principal en lugar de Ingresos directo
+            FrmPrincipal ventanaPrincipal = new FrmPrincipal();
+            // Creamos un controlador para el menú principal pasándole el idUsuario
+            new PrincipalController(ventanaPrincipal, usuarioLogueado.getId_usuario());
+
+            ventanaPrincipal.setLocationRelativeTo(null);
+            ventanaPrincipal.setVisible(true);
+            ventanaLogin.dispose();
+        }else {
             JOptionPane.showMessageDialog(ventanaLogin, "Correo o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }

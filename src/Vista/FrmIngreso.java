@@ -42,11 +42,11 @@ public class FrmIngreso extends javax.swing.JFrame {
         btnIngreso = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
         btnEgreso = new javax.swing.JButton();
+        btnPrincipal = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -90,10 +90,6 @@ public class FrmIngreso extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(203, 165, 105));
         jLabel8.setText("Finanzas");
 
-        jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Menu");
-
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Seguras");
@@ -123,6 +119,18 @@ public class FrmIngreso extends javax.swing.JFrame {
         btnEgreso.setText("Registro Gasto");
         btnEgreso.setBorder(null);
 
+        btnPrincipal.setBackground(new java.awt.Color(12, 3, 0));
+        btnPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_Home_1.png"))); // NOI18N
+        btnPrincipal.setText("Menu");
+        btnPrincipal.setBorder(null);
+        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrincipalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -137,12 +145,12 @@ public class FrmIngreso extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel23))
-                            .addComponent(jLabel22)
                             .addComponent(jLabel7)
                             .addComponent(btnIngreso)
                             .addComponent(btnCerrarSesion)
                             .addComponent(btnEgreso)
-                            .addComponent(btnReporte))
+                            .addComponent(btnReporte)
+                            .addComponent(btnPrincipal))
                         .addGap(0, 144, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -155,8 +163,8 @@ public class FrmIngreso extends javax.swing.JFrame {
                     .addComponent(jLabel23))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPrincipal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -165,7 +173,7 @@ public class FrmIngreso extends javax.swing.JFrame {
                 .addComponent(btnEgreso)
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -381,6 +389,10 @@ public class FrmIngreso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrincipalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -427,16 +439,16 @@ public class FrmIngreso extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnEgreso;
+    public javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JButton btnEgreso;
     public javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnIngreso;
+    public javax.swing.JButton btnIngreso;
     public javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnReporte;
+    public javax.swing.JButton btnPrincipal;
+    public javax.swing.JButton btnReporte;
     public javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;

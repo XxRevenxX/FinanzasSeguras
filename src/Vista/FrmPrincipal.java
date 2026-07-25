@@ -182,19 +182,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        InicioSesion ventanaRegistro = new InicioSesion();
-        ventanaRegistro.setLocationRelativeTo(null);
-        ventanaRegistro.setVisible(true);
-    
-        this.dispose();
+
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
-        // TODO add your handling code here:
-            FrmIngreso ventana = new FrmIngreso();
-            ventana.setLocationRelativeTo(null);
-            ventana.setVisible(true);
-            this.dispose();
+
     }//GEN-LAST:event_btnIngresoActionPerformed
 
     /**
@@ -234,9 +226,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnEgreso;
-    private javax.swing.JButton btnIngreso;
-    private javax.swing.JButton btnReporte;
+    public javax.swing.JButton btnEgreso;
+    public javax.swing.JButton btnIngreso;
+    public javax.swing.JButton btnReporte;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel7;
