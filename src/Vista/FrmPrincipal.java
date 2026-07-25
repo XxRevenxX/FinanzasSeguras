@@ -42,6 +42,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCerrarSesion = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
         btnEgreso = new javax.swing.JButton();
+        btnConfiguracion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,6 +103,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnEgreso.setText("Registro Gasto");
         btnEgreso.setBorder(null);
 
+        btnConfiguracion.setBackground(new java.awt.Color(12, 3, 0));
+        btnConfiguracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion-del-usuario.png"))); // NOI18N
+        btnConfiguracion.setText("Configuracion");
+        btnConfiguracion.setBorder(null);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -121,8 +129,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(btnIngreso)
                             .addComponent(btnCerrarSesion)
                             .addComponent(btnEgreso)
-                            .addComponent(btnReporte))
-                        .addGap(0, 144, Short.MAX_VALUE)))
+                            .addComponent(btnReporte)
+                            .addComponent(btnConfiguracion))
+                        .addGap(0, 141, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -144,6 +153,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnEgreso)
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
+                .addGap(18, 18, 18)
+                .addComponent(btnConfiguracion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
@@ -226,6 +237,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JButton btnConfiguracion;
     public javax.swing.JButton btnEgreso;
     public javax.swing.JButton btnIngreso;
     public javax.swing.JButton btnReporte;

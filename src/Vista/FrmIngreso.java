@@ -47,6 +47,7 @@ public class FrmIngreso extends javax.swing.JFrame {
         btnReporte = new javax.swing.JButton();
         btnEgreso = new javax.swing.JButton();
         btnPrincipal = new javax.swing.JButton();
+        btnConfiguracion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -131,6 +132,18 @@ public class FrmIngreso extends javax.swing.JFrame {
             }
         });
 
+        btnConfiguracion.setBackground(new java.awt.Color(12, 3, 0));
+        btnConfiguracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion-del-usuario.png"))); // NOI18N
+        btnConfiguracion.setText("Configuracion");
+        btnConfiguracion.setBorder(null);
+        btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguracionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -150,8 +163,9 @@ public class FrmIngreso extends javax.swing.JFrame {
                             .addComponent(btnCerrarSesion)
                             .addComponent(btnEgreso)
                             .addComponent(btnReporte)
-                            .addComponent(btnPrincipal))
-                        .addGap(0, 144, Short.MAX_VALUE)))
+                            .addComponent(btnPrincipal)
+                            .addComponent(btnConfiguracion))
+                        .addGap(0, 141, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -173,7 +187,9 @@ public class FrmIngreso extends javax.swing.JFrame {
                 .addComponent(btnEgreso)
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnConfiguracion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -320,7 +336,7 @@ public class FrmIngreso extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(paneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -393,6 +409,10 @@ public class FrmIngreso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPrincipalActionPerformed
 
+    private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfiguracionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -440,6 +460,7 @@ public class FrmIngreso extends javax.swing.JFrame {
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JButton btnConfiguracion;
     public javax.swing.JButton btnEgreso;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnIngreso;

@@ -36,6 +36,7 @@ public class FrmGasto extends javax.swing.JFrame {
         btnCerrarSesion = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
         btnEgreso = new javax.swing.JButton();
+        btnConfiguracion1 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
@@ -53,6 +54,7 @@ public class FrmGasto extends javax.swing.JFrame {
         btnBorrar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         paneTabla = new javax.swing.JScrollPane();
+        btnConfiguracion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +114,18 @@ public class FrmGasto extends javax.swing.JFrame {
         btnEgreso.setText("Registro Gasto");
         btnEgreso.setBorder(null);
 
+        btnConfiguracion1.setBackground(new java.awt.Color(12, 3, 0));
+        btnConfiguracion1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnConfiguracion1.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfiguracion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion-del-usuario.png"))); // NOI18N
+        btnConfiguracion1.setText("Configuracion");
+        btnConfiguracion1.setBorder(null);
+        btnConfiguracion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguracion1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -131,8 +145,9 @@ public class FrmGasto extends javax.swing.JFrame {
                             .addComponent(btnIngreso)
                             .addComponent(btnCerrarSesion)
                             .addComponent(btnEgreso)
-                            .addComponent(btnReporte))
-                        .addGap(0, 144, Short.MAX_VALUE)))
+                            .addComponent(btnReporte)
+                            .addComponent(btnConfiguracion1))
+                        .addGap(0, 141, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -154,7 +169,9 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addComponent(btnEgreso)
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnConfiguracion1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -299,7 +316,7 @@ public class FrmGasto extends javax.swing.JFrame {
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(paneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,6 +330,18 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnConfiguracion.setBackground(new java.awt.Color(12, 3, 0));
+        btnConfiguracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion-del-usuario.png"))); // NOI18N
+        btnConfiguracion.setText("Configuracion");
+        btnConfiguracion.setBorder(null);
+        btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguracionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -321,11 +350,21 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(527, 527, 527)
+                    .addComponent(btnConfiguracion)
+                    .addContainerGap(528, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(324, 324, 324)
+                    .addComponent(btnConfiguracion)
+                    .addContainerGap(324, Short.MAX_VALUE)))
         );
 
         pack();
@@ -358,6 +397,14 @@ public class FrmGasto extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfiguracionActionPerformed
+
+    private void btnConfiguracion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracion1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfiguracion1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,6 +449,8 @@ public class FrmGasto extends javax.swing.JFrame {
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JButton btnConfiguracion;
+    public javax.swing.JButton btnConfiguracion1;
     public javax.swing.JButton btnEgreso;
     public javax.swing.JButton btnGuardar4;
     public javax.swing.JButton btnIngreso;
