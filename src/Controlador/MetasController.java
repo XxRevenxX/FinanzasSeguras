@@ -27,14 +27,12 @@ public class MetasController implements ActionListener {
         this.ventana = ventana;
         this.idUsuario = idUsuario;
 
-        // Botones de acciones de Metas
-        this.ventana.btnGuardar.addActionListener(this);   // Guardar nueva meta
-        this.ventana.btnGuardar1.addActionListener(this);  // Añadir/Restar fondos a la meta
+        this.ventana.btnGuardar.addActionListener(this);
+        this.ventana.btnAgregar.addActionListener(this);
         this.ventana.btnActualizar.addActionListener(this);
         this.ventana.btnBorrar.addActionListener(this);
         this.ventana.btnLimpiar.addActionListener(this);
 
-        // Botones del menú lateral
         this.ventana.btnPrincipal.addActionListener(this);
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
@@ -43,7 +41,6 @@ public class MetasController implements ActionListener {
         this.ventana.btnMeta.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
 
-        // Control de rol para el Administrador (id_usuario = 1)
         if (this.idUsuario == 1) {
             this.ventana.btnAdminUsuarios.setVisible(true);
             this.ventana.btnAdminUsuarios.addActionListener(this);
@@ -56,48 +53,21 @@ public class MetasController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == ventana.btnGuardar) {
-            guardarMeta();
-        }
-        if (e.getSource() == ventana.btnGuardar1) {
-            anadirMontoMeta();
-        }
-        if (e.getSource() == ventana.btnActualizar) {
-            actualizarMeta();
-        }
-        if (e.getSource() == ventana.btnBorrar) {
-            eliminarMeta();
-        }
-        if (e.getSource() == ventana.btnLimpiar) {
-            limpiarCampos();
-        }
-        if (e.getSource() == ventana.btnPrincipal) {
-            abrirMenuPrincipal();
-        }
-        if (e.getSource() == ventana.btnIngreso) {
-            abrirVentanaIngreso();
-        }
-        if (e.getSource() == ventana.btnEgreso) {
-            abrirVentanaGasto();
-        }
-        if (e.getSource() == ventana.btnReporte) {
-            abrirVentanaReporte();
-        }
-        if (e.getSource() == ventana.btnConfiguracion) {
-            abrirVentanaConfiguracion();
-        }
-        if (e.getSource() == ventana.btnMeta) {
-            JOptionPane.showMessageDialog(ventana, "Ya te encuentras en Metas de ahorro.");
-        }
-        if (e.getSource() == ventana.btnAdminUsuarios) {
-            abrirVentanaAdmin();
-        }
-        if (e.getSource() == ventana.btnCerrarSesion) {
-            cerrarSesion();
-        }
+        if (e.getSource() == ventana.btnGuardar) guardarMeta();
+        if (e.getSource() == ventana.btnAgregar) anadirMontoMeta();
+        if (e.getSource() == ventana.btnActualizar) actualizarMeta();
+        if (e.getSource() == ventana.btnBorrar) eliminarMeta();
+        if (e.getSource() == ventana.btnLimpiar) limpiarCampos();
+        if (e.getSource() == ventana.btnPrincipal) abrirMenuPrincipal();
+        if (e.getSource() == ventana.btnIngreso) abrirVentanaIngreso();
+        if (e.getSource() == ventana.btnEgreso) abrirVentanaGasto();
+        if (e.getSource() == ventana.btnReporte) abrirVentanaReporte();
+        if (e.getSource() == ventana.btnConfiguracion) abrirVentanaConfiguracion();
+        if (e.getSource() == ventana.btnMeta) JOptionPane.showMessageDialog(ventana, "Ya te encuentras en Metas de ahorro.");
+        if (e.getSource() == ventana.btnAdminUsuarios) abrirVentanaAdmin();
+        if (e.getSource() == ventana.btnCerrarSesion) cerrarSesion();
     }
 
-    // --- GUARDAR NUEVA META ---
     private void guardarMeta() {
         String nombre = ventana.txtNombreMeta.getText().trim();
         String objetivoStr = ventana.txtObjetivo.getText().trim();
@@ -116,16 +86,30 @@ public class MetasController implements ActionListener {
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
             
-            // Asumiendo que tu tabla en la base de datos se llama 'meta' o 'metas' y tiene estos campos
-            String sql = "INSERT INTO meta (nombre_meta, monto_objetivo, fecha_limite, monto_actual, id_usuario) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO metaahorro (nombre_meta, monto_objetivo, fecha_limite, id_usuario) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, nombre);
             ps.setDouble(2, objetivo);
             ps.setString(3, fecha);
-            ps.setDouble(4, ingresoActual);
-            ps.setInt(5, this.idUsuario);
+            ps.setInt(4, this.idUsuario);
             
             ps.executeUpdate();
+            
+            if (ingresoActual > 0) {
+                String sqlGetId = "SELECT LAST_INSERT_ID()";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sqlGetId);
+                if (rs.next()) {
+                    int idNuevaMeta = rs.getInt(1);
+                    String sqlAhorro = "INSERT INTO ahorro (monto, fecha, descripcion, id_usuario, id_meta) VALUES (?, CURDATE(), 'Ingreso inicial', ?, ?)";
+                    PreparedStatement psAhorro = con.prepareStatement(sqlAhorro);
+                    psAhorro.setDouble(1, ingresoActual);
+                    psAhorro.setInt(2, this.idUsuario);
+                    psAhorro.setInt(3, idNuevaMeta);
+                    psAhorro.executeUpdate();
+                }
+            }
+            
             con.close();
 
             JOptionPane.showMessageDialog(ventana, "¡Meta guardada con éxito!");
@@ -138,39 +122,36 @@ public class MetasController implements ActionListener {
         }
     }
 
-    // --- AÑADIR O RESTAR FONDOS A LA META (Botón 'btnGuardar1') ---
     private void anadirMontoMeta() {
         if (idMetaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(ventana, "Selecciona una meta de la tabla para añadir o restar fondos.");
+            JOptionPane.showMessageDialog(ventana, "Selecciona una meta de la tabla para añadir fondos.");
             return;
         }
 
-        String montoAñadirStr = ventana.txtAñadir.getText().trim();
-        if (montoAñadirStr.isEmpty()) {
+        String montoAnadirStr = ventana.txtAñadir.getText().trim();
+        if (montoAnadirStr.isEmpty()) {
             JOptionPane.showMessageDialog(ventana, "Ingresa un monto en el campo 'Añadir o Restar a la meta'.");
             return;
         }
 
         try {
-            double montoCambio = Double.parseDouble(montoAñadirStr);
+            double montoCambio = Double.parseDouble(montoAnadirStr);
 
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
             
-            // Sumamos (o restamos si ponen negativo) al monto actual existente
-            String sql = "UPDATE meta SET monto_actual = monto_actual + ? WHERE id_meta = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDouble(1, montoCambio);
-            ps.setInt(2, idMetaSeleccionada);
+            String sqlAhorro = "INSERT INTO ahorro (monto, fecha, descripcion, id_usuario, id_meta) VALUES (?, CURDATE(), 'Ahorro a meta', ?, ?)";
+            PreparedStatement psAhorro = con.prepareStatement(sqlAhorro);
+            psAhorro.setDouble(1, montoCambio);
+            psAhorro.setInt(2, this.idUsuario);
+            psAhorro.setInt(3, idMetaSeleccionada);
+            psAhorro.executeUpdate();
             
-            int filas = ps.executeUpdate();
             con.close();
 
-            if (filas > 0) {
-                JOptionPane.showMessageDialog(ventana, "¡Fondos actualizados en la meta!");
-                ventana.txtAñadir.setText("");
-                mostrarMetas();
-            }
+            JOptionPane.showMessageDialog(ventana, "¡Fondos agregados a la meta con éxito!");
+            ventana.txtAñadir.setText("");
+            mostrarMetas();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(ventana, "El valor a añadir debe ser numérico.");
         } catch (SQLException ex) {
@@ -178,7 +159,6 @@ public class MetasController implements ActionListener {
         }
     }
 
-    // --- ACTUALIZAR DATOS DE LA META ---
     private void actualizarMeta() {
         if (idMetaSeleccionada == -1) {
             JOptionPane.showMessageDialog(ventana, "Selecciona una meta de la tabla para actualizar.");
@@ -188,22 +168,19 @@ public class MetasController implements ActionListener {
         String nombre = ventana.txtNombreMeta.getText().trim();
         String objetivoStr = ventana.txtObjetivo.getText().trim();
         String fecha = ventana.txtFecha.getText().trim();
-        String ingresoActualStr = ventana.txtIngresoMeta.getText().trim();
 
         try {
             double objetivo = Double.parseDouble(objetivoStr);
-            double ingresoActual = ingresoActualStr.isEmpty() ? 0.0 : Double.parseDouble(ingresoActualStr);
 
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
             
-            String sql = "UPDATE meta SET nombre_meta = ?, monto_objetivo = ?, fecha_limite = ?, monto_actual = ? WHERE id_meta = ?";
+            String sql = "UPDATE metaahorro SET nombre_meta = ?, monto_objetivo = ?, fecha_limite = ? WHERE id_meta = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, nombre);
             ps.setDouble(2, objetivo);
             ps.setString(3, fecha);
-            ps.setDouble(4, ingresoActual);
-            ps.setInt(5, idMetaSeleccionada);
+            ps.setInt(4, idMetaSeleccionada);
             
             int filas = ps.executeUpdate();
             con.close();
@@ -220,7 +197,6 @@ public class MetasController implements ActionListener {
         }
     }
 
-    // --- ELIMINAR META ---
     private void eliminarMeta() {
         if (idMetaSeleccionada == -1) {
             JOptionPane.showMessageDialog(ventana, "Selecciona una meta de la tabla para borrar.");
@@ -234,7 +210,12 @@ public class MetasController implements ActionListener {
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
             
-            String sql = "DELETE FROM meta WHERE id_meta = ?";
+            String sqlAhorros = "DELETE FROM ahorro WHERE id_meta = ?";
+            PreparedStatement psAhorros = con.prepareStatement(sqlAhorros);
+            psAhorros.setInt(1, idMetaSeleccionada);
+            psAhorros.executeUpdate();
+            
+            String sql = "DELETE FROM metaahorro WHERE id_meta = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMetaSeleccionada);
             
@@ -251,7 +232,6 @@ public class MetasController implements ActionListener {
         }
     }
 
-    // --- MOSTRAR METAS EN LA JTABLE ---
     private void mostrarMetas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
@@ -264,7 +244,7 @@ public class MetasController implements ActionListener {
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
             
-            String sql = "SELECT id_meta, nombre_meta, monto_objetivo, monto_actual, fecha_limite FROM meta WHERE id_usuario = ?";
+            String sql = "SELECT m.id_meta, m.nombre_meta, m.monto_objetivo, m.fecha_limite, COALESCE(SUM(a.monto), 0) AS total_ahorrado FROM metaahorro m LEFT JOIN ahorro a ON m.id_meta = a.id_meta WHERE m.id_usuario = ? GROUP BY m.id_meta, m.nombre_meta, m.monto_objetivo, m.fecha_limite";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, this.idUsuario);
             ResultSet rs = ps.executeQuery();
@@ -274,7 +254,7 @@ public class MetasController implements ActionListener {
                     rs.getInt("id_meta"),
                     rs.getString("nombre_meta"),
                     rs.getDouble("monto_objetivo"),
-                    rs.getDouble("monto_actual"),
+                    rs.getDouble("total_ahorrado"),
                     rs.getString("fecha_limite")
                 });
             }
@@ -310,7 +290,6 @@ public class MetasController implements ActionListener {
         ventana.txtAñadir.setText("");
     }
 
-    // --- NAVEGACIÓN ENTRE VENTANAS ---
     private void abrirMenuPrincipal() {
         FrmPrincipal frm = new FrmPrincipal();
         new PrincipalController(frm, this.idUsuario);

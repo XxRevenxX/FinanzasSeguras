@@ -60,7 +60,7 @@ public class FrmMetas extends javax.swing.JFrame {
         txtIngresoMeta = new javax.swing.JTextField();
         txtAñadir = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        btnGuardar1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         paneTabla = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -269,10 +269,10 @@ public class FrmMetas extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Añadir o Restar a la meta");
 
-        btnGuardar1.setBackground(new java.awt.Color(26, 17, 14));
-        btnGuardar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar1.setText("Agregar");
-        btnGuardar1.addActionListener(this::btnGuardar1ActionPerformed);
+        btnAgregar.setBackground(new java.awt.Color(26, 17, 14));
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(this::btnAgregarActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -301,7 +301,7 @@ public class FrmMetas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpiar))
                             .addComponent(jLabel5)
-                            .addComponent(btnGuardar1))
+                            .addComponent(btnAgregar))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -333,7 +333,7 @@ public class FrmMetas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardar1)
+                .addComponent(btnAgregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
@@ -437,9 +437,9 @@ public class FrmMetas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIngresoMetaActionPerformed
 
-    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardar1ActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,12 +469,12 @@ public class FrmMetas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnAdminUsuarios;
+    public javax.swing.JButton btnAgregar;
     public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnCerrarSesion;
     public javax.swing.JButton btnConfiguracion;
     public javax.swing.JButton btnEgreso;
     public javax.swing.JButton btnGuardar;
-    public javax.swing.JButton btnGuardar1;
     public javax.swing.JButton btnIngreso;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnMeta;
