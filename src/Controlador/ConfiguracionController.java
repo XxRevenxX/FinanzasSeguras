@@ -2,11 +2,18 @@ package Controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import Vista.FrmConfiguracion;
 import Vista.FrmPrincipal;
 import Vista.FrmIngreso;
@@ -19,6 +26,7 @@ import Conexion.ConexionDB;
 public class ConfiguracionController implements ActionListener {
     private FrmConfiguracion ventana;
     private int idUsuario;
+    private String rutaFotoTemporal = null; // Almacena la ruta del archivo si el usuario elige uno nuevo
 
     public ConfiguracionController(FrmConfiguracion ventana, int idUsuario) {
         this.ventana = ventana;
@@ -38,6 +46,14 @@ public class ConfiguracionController implements ActionListener {
         } else {
             this.ventana.btnAdminUsuarios.setVisible(false);
         }
+
+        // Hacemos que al dar clic en el panel de la foto se abra el explorador de archivos
+        this.ventana.panel_foto.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionarImagenPerfil();
+            }
+        });
 
         cargarDatosUsuario();
     }
@@ -70,11 +86,51 @@ public class ConfiguracionController implements ActionListener {
         }
     }
 
+    // --- SELECCIONAR IMAGEN DESDE LA PC ---
+    private void seleccionarImagenPerfil() {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (JPG, PNG)", "jpg", "png", "jpeg");
+        fileChooser.setFileFilter(filtro);
+        
+        int seleccion = fileChooser.showOpenDialog(ventana);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File archivo = fileChooser.getSelectedFile();
+            rutaFotoTemporal = archivo.getAbsolutePath();
+            
+            // Mostramos la imagen seleccionada de forma temporal en el panel
+            mostrarImagenEnPanel(rutaFotoTemporal);
+        }
+    }
+
+    // --- MOSTRAR IMAGEN EN EL PANEL ---
+    private void mostrarImagenEnPanel(Object fuenteImagen) {
+        ventana.panel_foto.removeAll();
+        JLabel lblImagen = new JLabel();
+        lblImagen.setBounds(0, 0, 150, 150); // Tamaño estandarizado del panel
+        
+        ImageIcon iconoOriginal;
+        if (fuenteImagen instanceof String) {
+            iconoOriginal = new ImageIcon((String) fuenteImagen);
+        } else if (fuenteImagen instanceof byte[]) {
+            iconoOriginal = new ImageIcon((byte[]) fuenteImagen);
+        } else {
+            return;
+        }
+
+        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        lblImagen.setIcon(new ImageIcon(imagenEscalada));
+        
+        ventana.panel_foto.add(lblImagen);
+        ventana.panel_foto.repaint();
+        ventana.panel_foto.revalidate();
+    }
+
+    // --- CARGAR DATOS Y FOTO DESDE LA BD ---
     private void cargarDatosUsuario() {
         try {
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
-            String sql = "SELECT nombre, fecha_nac, correo, telefono FROM Usuario WHERE id_usuario = ?";
+            String sql = "SELECT nombre, fecha_nac, contrasena, correo, telefono, foto_perfil FROM Usuario WHERE id_usuario = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, this.idUsuario);
             ResultSet rs = ps.executeQuery();
@@ -82,8 +138,14 @@ public class ConfiguracionController implements ActionListener {
             if (rs.next()) {
                 ventana.txtNombre.setText(rs.getString("nombre"));
                 ventana.txtFecha.setText(rs.getString("fecha_nac"));
+                ventana.txtContrasena.setText(rs.getString("contrasena"));
                 ventana.txtCorreo.setText(rs.getString("correo"));
                 ventana.txtTelefono.setText(rs.getString("telefono"));
+                
+                byte[] bytesImagen = rs.getBytes("foto_perfil");
+                if (bytesImagen != null) {
+                    mostrarImagenEnPanel(bytesImagen);
+                }
             }
             con.close();
         } catch (SQLException ex) {
@@ -91,35 +153,59 @@ public class ConfiguracionController implements ActionListener {
         }
     }
 
+    // --- ACTUALIZAR DATOS Y FOTO EN LA BD ---
     private void actualizarDatos() {
         String nombre = ventana.txtNombre.getText().trim();
         String fecha = ventana.txtFecha.getText().trim();
+        String contrasena = ventana.txtContrasena.getText().trim();
         String correo = ventana.txtCorreo.getText().trim();
         String telefono = ventana.txtTelefono.getText().trim();
 
-        if (nombre.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(ventana, "Nombre y Correo son obligatorios.");
+        if (nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(ventana, "Nombre, Contraseña y Correo son obligatorios.");
             return;
         }
 
         try {
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
-            String sql = "UPDATE Usuario SET nombre = ?, fecha_nac = ?, correo = ?, telefono = ? WHERE id_usuario = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, nombre);
-            ps.setString(2, fecha);
-            ps.setString(3, correo);
-            ps.setString(4, telefono);
-            ps.setInt(5, this.idUsuario);
+            
+            String sql;
+            PreparedStatement ps;
+
+            // Si el usuario seleccionó una nueva foto, la incluimos en el UPDATE
+            if (rutaFotoTemporal != null) {
+                sql = "UPDATE Usuario SET nombre = ?, fecha_nac = ?, contrasena = ?, correo = ?, telefono = ?, foto_perfil = ? WHERE id_usuario = ?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, nombre);
+                ps.setString(2, fecha);
+                ps.setString(3, contrasena);
+                ps.setString(4, correo);
+                ps.setString(5, telefono);
+                
+                FileInputStream fis = new FileInputStream(new File(rutaFotoTemporal));
+                ps.setBinaryStream(6, fis, (int) new File(rutaFotoTemporal).length());
+                ps.setInt(7, this.idUsuario);
+            } else {
+                // Si no cambió la foto, actualizamos solo los textos para no sobreescribirla con nulos
+                sql = "UPDATE Usuario SET nombre = ?, fecha_nac = ?, contrasena = ?, correo = ?, telefono = ? WHERE id_usuario = ?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, nombre);
+                ps.setString(2, fecha);
+                ps.setString(3, contrasena);
+                ps.setString(4, correo);
+                ps.setString(5, telefono);
+                ps.setInt(6, this.idUsuario);
+            }
             
             int filas = ps.executeUpdate();
             con.close();
 
             if (filas > 0) {
-                JOptionPane.showMessageDialog(ventana, "¡Datos actualizados con éxito!");
+                JOptionPane.showMessageDialog(ventana, "¡Perfil actualizado con éxito!");
+                rutaFotoTemporal = null; // Reiniciamos la variable temporal
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(ventana, "Error al actualizar: " + ex.getMessage());
         }
     }
