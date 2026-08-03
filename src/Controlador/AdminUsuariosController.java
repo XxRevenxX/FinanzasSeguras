@@ -202,7 +202,7 @@ public class AdminUsuariosController implements ActionListener {
         modelo.addColumn("Nombre");
         modelo.addColumn("Correo");
         modelo.addColumn("Teléfono");
-        modelo.addColumn("Contraseña"); // <--- Agregada la columna al modelo
+        modelo.addColumn("Contraseña");
         modelo.addColumn("Fecha Nac.");
 
         try {
@@ -219,7 +219,7 @@ public class AdminUsuariosController implements ActionListener {
                     rs.getString("nombre"),
                     rs.getString("correo"),
                     rs.getString("telefono"),
-                    rs.getString("contrasena"), // <--- Agregado el dato de la contraseña
+                    rs.getString("contrasena"), 
                     rs.getString("fecha_nac")
                 });
             }
@@ -238,8 +238,8 @@ public class AdminUsuariosController implements ActionListener {
                     ventana.txtNombre.setText(tabla.getValueAt(fila, 1).toString());
                     ventana.txtCorreo.setText(tabla.getValueAt(fila, 2).toString());
                     ventana.txtTelefono.setText(tabla.getValueAt(fila, 3).toString());
-                    ventana.txtPass.setText(tabla.getValueAt(fila, 4).toString());     // <--- Columna 4: Contraseña
-                    ventana.txtFec_Nac.setText(tabla.getValueAt(fila, 5).toString()); // <--- Columna 5: Fecha Nac.
+                    ventana.txtPass.setText(tabla.getValueAt(fila, 4).toString());     
+                    ventana.txtFec_Nac.setText(tabla.getValueAt(fila, 5).toString()); 
                 }
             }
         });

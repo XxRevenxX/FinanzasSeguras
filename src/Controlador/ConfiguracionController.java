@@ -161,7 +161,6 @@ public class ConfiguracionController implements ActionListener {
         }
     }
 
-    // --- ACTUALIZAR DATOS Y FOTO EN LA BD ---
     private void actualizarDatos() {
         String nombre = ventana.txtNombre.getText().trim();
         String fecha = ventana.txtFecha.getText().trim();

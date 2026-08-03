@@ -50,15 +50,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btn_AccessReporte = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btn_AccessIngreso = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        lblIngreso = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btn_AccessGasto = new javax.swing.JLabel();
+        lblGasto = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         btn_AccessAhorro = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        lblAhorro = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -202,7 +206,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(btnAdminUsuarios)
                             .addComponent(btnConfiguracion)
                             .addComponent(btnMeta))
-                        .addGap(0, 125, Short.MAX_VALUE)))
+                        .addGap(0, 119, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -248,6 +252,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Total dinero");
 
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotal.setText("Total dinero");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -255,9 +263,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTotal)
                     .addComponent(jLabel3)
                     .addComponent(btn_AccessReporte))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +275,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btn_AccessReporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(lblTotal)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(26, 17, 14));
@@ -279,6 +290,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Total Ingreso");
 
+        lblIngreso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblIngreso.setForeground(new java.awt.Color(255, 255, 255));
+        lblIngreso.setText("Total Ingreso");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -286,6 +301,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIngreso)
                     .addComponent(jLabel5)
                     .addComponent(btn_AccessIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
@@ -297,7 +313,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btn_AccessIngreso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(lblIngreso)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(26, 17, 14));
@@ -310,6 +328,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         btn_AccessGasto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_AccessGasto.png"))); // NOI18N
 
+        lblGasto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblGasto.setForeground(new java.awt.Color(255, 255, 255));
+        lblGasto.setText(" Total Gasto");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -317,6 +339,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGasto)
                     .addComponent(jLabel4)
                     .addComponent(btn_AccessGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
@@ -328,7 +351,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btn_AccessGasto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(lblGasto)
+                .addGap(30, 30, 30))
         );
 
         jPanel7.setBackground(new java.awt.Color(26, 17, 14));
@@ -341,6 +366,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText(" Total Ahorro");
 
+        lblAhorro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAhorro.setForeground(new java.awt.Color(255, 255, 255));
+        lblAhorro.setText(" Total Ahorro");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -352,7 +381,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addComponent(btn_AccessAhorro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jLabel6)))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAhorro)
+                            .addComponent(jLabel6))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -362,7 +393,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btn_AccessAhorro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(lblAhorro)
+                .addGap(27, 27, 27))
         );
 
         jPanel8.setBackground(new java.awt.Color(26, 17, 14));
@@ -380,7 +413,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel2)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,5 +566,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JLabel lblAhorro;
+    public javax.swing.JLabel lblGasto;
+    public javax.swing.JLabel lblIngreso;
+    public javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
 }
