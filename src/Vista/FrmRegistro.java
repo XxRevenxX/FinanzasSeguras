@@ -108,7 +108,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         btnCrearUsuario.setForeground(new java.awt.Color(203, 165, 105));
         btnCrearUsuario.setText("Crear cuenta");
         btnCrearUsuario.setAutoscrolls(true);
-        btnCrearUsuario.setBorder(null);
+        btnCrearUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 165, 105)));
         btnCrearUsuario.addActionListener(this::btnCrearUsuarioActionPerformed);
 
         txtPass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N

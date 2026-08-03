@@ -3,6 +3,7 @@ package Controlador;
 import Vista.FrmPrincipal;
 import Vista.FrmIngreso;
 import Vista.FrmGasto;
+import Vista.FrmConfiguracion;
 import Vista.InicioSesion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,25 +11,24 @@ import javax.swing.JOptionPane;
 
 public class PrincipalController implements ActionListener {
     private FrmPrincipal ventana;
-    private int idUsuario; // Aquí guardamos el usuario que viene del Login
+    private int idUsuario;
 
     public PrincipalController(FrmPrincipal ventana, int idUsuario) {
         this.ventana = ventana;
         this.idUsuario = idUsuario;
 
-        // Escuchadores de los botones del menú lateral en FrmPrincipal
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
         
-        // Si tienes botón de cerrar sesión en FrmPrincipal
-        // this.ventana.btnCerrarSesion.addActionListener(this);
+        // Botones adicionales activados (asegúrate de que sean public en FrmPrincipal)
+        // this.ventana.btnConfiguracion.addActionListener(this); 
+        this.ventana.btnCerrarSesion.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == ventana.btnIngreso) {
-            // Abrimos Ingresos y le PASAMOS el idUsuario actual
             FrmIngreso frmIngreso = new FrmIngreso();
             new IngresoController(frmIngreso, this.idUsuario);
             frmIngreso.setLocationRelativeTo(null);
@@ -37,7 +37,6 @@ public class PrincipalController implements ActionListener {
         }
         
         if (e.getSource() == ventana.btnEgreso) {
-            // Abrimos Gastos y le PASAMOS el idUsuario actual
             FrmGasto frmGasto = new FrmGasto();
             new GastoController(frmGasto, this.idUsuario);
             frmGasto.setLocationRelativeTo(null);
@@ -47,6 +46,22 @@ public class PrincipalController implements ActionListener {
 
         if (e.getSource() == ventana.btnReporte) {
             JOptionPane.showMessageDialog(ventana, "Módulo de Reportes próximamente.");
+        }
+
+        if (e.getSource() == ventana.btnConfiguracion) {
+            FrmConfiguracion frmConfig = new FrmConfiguracion();
+            new ConfiguracionController(frmConfig, this.idUsuario);
+            frmConfig.setLocationRelativeTo(null);
+            frmConfig.setVisible(true);
+            ventana.dispose();
+        }
+
+        if (e.getSource() == ventana.btnCerrarSesion) {
+            InicioSesion ventanaLogin = new InicioSesion();
+            new InicioSesionController(ventanaLogin);
+            ventanaLogin.setLocationRelativeTo(null);
+            ventanaLogin.setVisible(true);
+            ventana.dispose();
         }
     }
 }

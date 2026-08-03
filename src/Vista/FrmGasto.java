@@ -31,12 +31,14 @@ public class FrmGasto extends javax.swing.JFrame {
         btnIngreso = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
-        btnEgreso = new javax.swing.JButton();
         btnConfiguracion1 = new javax.swing.JButton();
+        btnPrincipal = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnEgreso = new javax.swing.JButton();
+        btnAdminUsuarios = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
@@ -81,10 +83,6 @@ public class FrmGasto extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(203, 165, 105));
         jLabel8.setText("Finanzas");
 
-        jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Menu");
-
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Seguras");
@@ -107,13 +105,6 @@ public class FrmGasto extends javax.swing.JFrame {
         btnReporte.setText("Generar Reporte");
         btnReporte.setBorder(null);
 
-        btnEgreso.setBackground(new java.awt.Color(12, 3, 0));
-        btnEgreso.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnEgreso.setForeground(new java.awt.Color(255, 255, 255));
-        btnEgreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_Bolsa.png"))); // NOI18N
-        btnEgreso.setText("Registro Gasto");
-        btnEgreso.setBorder(null);
-
         btnConfiguracion1.setBackground(new java.awt.Color(12, 3, 0));
         btnConfiguracion1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnConfiguracion1.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,10 +117,61 @@ public class FrmGasto extends javax.swing.JFrame {
             }
         });
 
+        btnPrincipal.setBackground(new java.awt.Color(12, 3, 0));
+        btnPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_Home_1.png"))); // NOI18N
+        btnPrincipal.setText("Menu");
+        btnPrincipal.setBorder(null);
+        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrincipalActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(203, 165, 105));
+
+        btnEgreso.setBackground(new java.awt.Color(203, 165, 105));
+        btnEgreso.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnEgreso.setForeground(new java.awt.Color(255, 255, 255));
+        btnEgreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_Bolsa.png"))); // NOI18N
+        btnEgreso.setText("Registro Gasto");
+        btnEgreso.setBorder(null);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnEgreso)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnEgreso)
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        btnAdminUsuarios.setBackground(new java.awt.Color(12, 3, 0));
+        btnAdminUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAdminUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdminUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_Usuario.png"))); // NOI18N
+        btnAdminUsuarios.setText("Administrar Usuarios");
+        btnAdminUsuarios.setBorder(null);
+        btnAdminUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminUsuariosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,14 +182,14 @@ public class FrmGasto extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel23))
-                            .addComponent(jLabel22)
                             .addComponent(jLabel7)
                             .addComponent(btnIngreso)
                             .addComponent(btnCerrarSesion)
-                            .addComponent(btnEgreso)
                             .addComponent(btnReporte)
-                            .addComponent(btnConfiguracion1))
-                        .addGap(0, 141, Short.MAX_VALUE)))
+                            .addComponent(btnPrincipal)
+                            .addComponent(btnConfiguracion1)
+                            .addComponent(btnAdminUsuarios))
+                        .addGap(0, 119, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -159,19 +201,21 @@ public class FrmGasto extends javax.swing.JFrame {
                     .addComponent(jLabel23))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(41, 41, 41)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPrincipal)
                 .addGap(18, 18, 18)
                 .addComponent(btnIngreso)
                 .addGap(18, 18, 18)
-                .addComponent(btnEgreso)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
                 .addGap(18, 18, 18)
                 .addComponent(btnConfiguracion1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAdminUsuarios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -230,7 +274,7 @@ public class FrmGasto extends javax.swing.JFrame {
 
         btnBorrar.setBackground(new java.awt.Color(26, 17, 14));
         btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBorrar.setText("Guardar Ingreso");
+        btnBorrar.setText("Borrar Gasto");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -254,21 +298,24 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtConcepto4)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel33)
-                    .addComponent(cmbTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar4)
-                    .addComponent(jLabel34)
                     .addComponent(txtMonto4)
                     .addComponent(txtFecha4)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(btnActualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpiar)))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel33)
+                            .addComponent(cmbTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar4)
+                            .addComponent(jLabel34)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(btnActualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBorrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLimpiar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -294,12 +341,12 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addComponent(cmbTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(btnGuardar4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnBorrar)
                     .addComponent(btnLimpiar))
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -310,13 +357,14 @@ public class FrmGasto extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel32))
+                        .addComponent(jLabel32)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(paneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(8, Short.MAX_VALUE))
+                        .addComponent(paneTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +397,7 @@ public class FrmGasto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE))
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(527, 527, 527)
@@ -406,6 +454,14 @@ public class FrmGasto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConfiguracion1ActionPerformed
 
+    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrincipalActionPerformed
+
+    private void btnAdminUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminUsuariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -447,6 +503,7 @@ public class FrmGasto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnAdminUsuarios;
     public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnCerrarSesion;
     public javax.swing.JButton btnConfiguracion;
@@ -455,18 +512,19 @@ public class FrmGasto extends javax.swing.JFrame {
     public javax.swing.JButton btnGuardar4;
     public javax.swing.JButton btnIngreso;
     public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnPrincipal;
     public javax.swing.JButton btnReporte;
     public javax.swing.JComboBox<String> cmbTipo4;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    public javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
