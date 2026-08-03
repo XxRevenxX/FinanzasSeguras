@@ -15,6 +15,7 @@ import Vista.FrmReporte;
 import Vista.FrmAdministrarUsuario;
 import Vista.InicioSesion;
 import Conexion.ConexionDB;
+import Vista.FrmMetas;
 
 public class GastoController implements ActionListener {
     private FrmGasto ventana;
@@ -34,6 +35,7 @@ public class GastoController implements ActionListener {
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
+        this.ventana.btnMeta.addActionListener(this); 
         this.ventana.btnConfiguracion.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
         
@@ -61,6 +63,11 @@ public class GastoController implements ActionListener {
         if (e.getSource() == ventana.btnLimpiar) {
             limpiarCampos();
         }
+        
+        
+        
+        
+        
         if (e.getSource() == ventana.btnPrincipal) {
             abrirMenuPrincipal();
         }
@@ -75,6 +82,9 @@ public class GastoController implements ActionListener {
         }
         if (e.getSource() == ventana.btnConfiguracion) {
             abrirVentanaConfiguracion();
+        }
+        if (e.getSource() == ventana.btnMeta) {
+            abrirVentanaMetas();
         }
         if (e.getSource() == ventana.btnAdminUsuarios) {
             abrirVentanaAdmin();
@@ -244,6 +254,13 @@ public class GastoController implements ActionListener {
     private void abrirVentanaConfiguracion() {
         FrmConfiguracion frm = new FrmConfiguracion();
         new ConfiguracionController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+    private void abrirVentanaMetas() {
+        FrmMetas frm = new FrmMetas();
+        new MetasController(frm, this.idUsuario);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         ventana.dispose();

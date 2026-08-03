@@ -13,6 +13,7 @@ import Vista.FrmConfiguracion;
 import Vista.FrmAdministrarUsuario;
 import Vista.InicioSesion;
 import Conexion.ConexionDB;
+import Vista.FrmMetas;
 
 public class ReporteController implements ActionListener {
     private FrmReporte ventana;
@@ -27,6 +28,7 @@ public class ReporteController implements ActionListener {
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
+        this.ventana.btnMeta.addActionListener(this); 
         this.ventana.btnConfiguracion.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
 
@@ -57,6 +59,9 @@ public class ReporteController implements ActionListener {
         }
         if (e.getSource() == ventana.btnConfiguracion) {
             abrirVentanaConfiguracion();
+        }
+        if (e.getSource() == ventana.btnMeta) {
+            abrirVentanaMetas();
         }
         if (e.getSource() == ventana.btnAdminUsuarios) {
             abrirVentanaAdmin();
@@ -143,6 +148,14 @@ public class ReporteController implements ActionListener {
     private void abrirVentanaConfiguracion() {
         FrmConfiguracion frm = new FrmConfiguracion();
         new ConfiguracionController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+    
+    private void abrirVentanaMetas() {
+        FrmMetas frm = new FrmMetas();
+        new MetasController(frm, this.idUsuario);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         ventana.dispose();

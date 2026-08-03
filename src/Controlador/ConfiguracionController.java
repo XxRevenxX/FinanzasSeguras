@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import Vista.FrmConfiguracion;
 import Vista.FrmPrincipal;
 import Vista.FrmIngreso;
@@ -22,21 +21,26 @@ import Vista.FrmReporte;
 import Vista.FrmAdministrarUsuario;
 import Vista.InicioSesion;
 import Conexion.ConexionDB;
+import Vista.FrmMetas;
 
 public class ConfiguracionController implements ActionListener {
     private FrmConfiguracion ventana;
     private int idUsuario;
-    private String rutaFotoTemporal = null; // Almacena la ruta del archivo si el usuario elige uno nuevo
+    private String rutaFotoTemporal = null; 
 
     public ConfiguracionController(FrmConfiguracion ventana, int idUsuario) {
         this.ventana = ventana;
         this.idUsuario = idUsuario;
-
+        
+        //Botones del CRUD
         this.ventana.btnEditarPerfil.addActionListener(this);
+        
+        //Botonoes panel lateral
         this.ventana.btnPrincipal.addActionListener(this);
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
+        this.ventana.btnMeta.addActionListener(this); 
         this.ventana.btnConfiguracion.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
 
@@ -63,6 +67,8 @@ public class ConfiguracionController implements ActionListener {
         if (e.getSource() == ventana.btnEditarPerfil) {
             actualizarDatos();
         }
+        
+        
         if (e.getSource() == ventana.btnPrincipal) {
             abrirMenuPrincipal();
         }
@@ -78,6 +84,9 @@ public class ConfiguracionController implements ActionListener {
         if (e.getSource() == ventana.btnConfiguracion) {
             JOptionPane.showMessageDialog(ventana, "Ya te encuentras en Configuración.");
         }
+        if (e.getSource() == ventana.btnMeta) {
+            abrirVentanaMetas();
+        }
         if (e.getSource() == ventana.btnAdminUsuarios) {
             abrirVentanaAdmin();
         }
@@ -86,7 +95,7 @@ public class ConfiguracionController implements ActionListener {
         }
     }
 
-    // --- SELECCIONAR IMAGEN DESDE LA PC ---
+    // Seleccion imagen de la PC
     private void seleccionarImagenPerfil() {
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (JPG, PNG)", "jpg", "png", "jpeg");
@@ -102,7 +111,7 @@ public class ConfiguracionController implements ActionListener {
         }
     }
 
-    // --- MOSTRAR IMAGEN EN EL PANEL ---
+    // Mostrar imagen en el panel
     private void mostrarImagenEnPanel(Object fuenteImagen) {
         ventana.panel_foto.removeAll();
         JLabel lblImagen = new JLabel();
@@ -125,7 +134,6 @@ public class ConfiguracionController implements ActionListener {
         ventana.panel_foto.revalidate();
     }
 
-    // --- CARGAR DATOS Y FOTO DESDE LA BD ---
     private void cargarDatosUsuario() {
         try {
             ConexionDB conDb = new ConexionDB();
@@ -237,6 +245,13 @@ public class ConfiguracionController implements ActionListener {
     private void abrirVentanaReporte() {
         FrmReporte frm = new FrmReporte();
         new ReporteController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+    private void abrirVentanaMetas() {
+        FrmMetas frm = new FrmMetas();
+        new MetasController(frm, this.idUsuario);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         ventana.dispose();

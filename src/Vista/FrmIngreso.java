@@ -50,6 +50,7 @@ public class FrmIngreso extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnIngreso = new javax.swing.JButton();
         btnAdminUsuarios = new javax.swing.JButton();
+        btnMeta = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -177,39 +178,43 @@ public class FrmIngreso extends javax.swing.JFrame {
             }
         });
 
+        btnMeta.setBackground(new java.awt.Color(12, 3, 0));
+        btnMeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnMeta.setForeground(new java.awt.Color(255, 255, 255));
+        btnMeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_meta.png"))); // NOI18N
+        btnMeta.setText("Metas de ahorro");
+        btnMeta.setBorder(null);
+        btnMeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMetaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel23))
-                                    .addComponent(jLabel7)
-                                    .addComponent(btnCerrarSesion)
-                                    .addComponent(btnPrincipal)
-                                    .addComponent(btnConfiguracion))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnEgreso)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReporte)
-                    .addComponent(btnAdminUsuarios))
-                .addContainerGap(125, Short.MAX_VALUE))
+                    .addComponent(jSeparator1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel23))
+                            .addComponent(jLabel7)
+                            .addComponent(btnCerrarSesion)
+                            .addComponent(btnPrincipal)
+                            .addComponent(btnConfiguracion)
+                            .addComponent(btnEgreso)
+                            .addComponent(btnReporte)
+                            .addComponent(btnAdminUsuarios)
+                            .addComponent(btnMeta))
+                        .addGap(0, 119, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,10 +236,12 @@ public class FrmIngreso extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
                 .addGap(18, 18, 18)
+                .addComponent(btnMeta)
+                .addGap(18, 18, 18)
                 .addComponent(btnConfiguracion)
                 .addGap(18, 18, 18)
                 .addComponent(btnAdminUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -417,11 +424,7 @@ public class FrmIngreso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        InicioSesion ventanaInicio = new InicioSesion();
-        ventanaInicio.setLocationRelativeTo(null);
-        ventanaInicio.setVisible(true);
 
-        this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -431,7 +434,7 @@ public class FrmIngreso extends javax.swing.JFrame {
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
         // TODO add your handling code here:
-        LocalDate.now().toString();
+
     }//GEN-LAST:event_txtFechaActionPerformed
 
     private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
@@ -461,6 +464,10 @@ public class FrmIngreso extends javax.swing.JFrame {
     private void btnAdminUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminUsuariosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdminUsuariosActionPerformed
+
+    private void btnMetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMetaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -515,6 +522,7 @@ public class FrmIngreso extends javax.swing.JFrame {
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnIngreso;
     public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnMeta;
     public javax.swing.JButton btnPrincipal;
     public javax.swing.JButton btnReporte;
     public javax.swing.JComboBox<String> cmbTipo;

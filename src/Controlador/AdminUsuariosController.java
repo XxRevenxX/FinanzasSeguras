@@ -15,6 +15,7 @@ import Vista.FrmConfiguracion;
 import Vista.FrmReporte;
 import Vista.InicioSesion;
 import Conexion.ConexionDB;
+import Vista.FrmMetas;
 
 public class AdminUsuariosController implements ActionListener {
     private FrmAdministrarUsuario ventana;
@@ -36,6 +37,7 @@ public class AdminUsuariosController implements ActionListener {
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
+        this.ventana.btnMeta.addActionListener(this); 
         this.ventana.btnConfiguracion.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
 
@@ -64,6 +66,10 @@ public class AdminUsuariosController implements ActionListener {
         if (e.getSource() == ventana.btnLimpiar) {
             limpiarCampos();
         }
+        
+        
+        
+        
         if (e.getSource() == ventana.btnPrincipal) {
             abrirMenuPrincipal();
         }
@@ -78,6 +84,9 @@ public class AdminUsuariosController implements ActionListener {
         }
         if (e.getSource() == ventana.btnConfiguracion) {
             abrirVentanaConfiguracion();
+        }
+        if (e.getSource() == ventana.btnMeta) {
+            abrirVentanaMetas();
         }
         if (e.getSource() == ventana.btnAdminUsuarios) {
             JOptionPane.showMessageDialog(ventana, "Ya te encuentras en Administrar Usuarios.");
@@ -193,12 +202,14 @@ public class AdminUsuariosController implements ActionListener {
         modelo.addColumn("Nombre");
         modelo.addColumn("Correo");
         modelo.addColumn("Teléfono");
+        modelo.addColumn("Contraseña"); // <--- Agregada la columna al modelo
         modelo.addColumn("Fecha Nac.");
 
         try {
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
-            String sql = "SELECT id_usuario, nombre, correo, telefono, fecha_nac FROM Usuario";
+            // Incluimos 'contrasena' en la consulta SQL
+            String sql = "SELECT id_usuario, nombre, correo, telefono, contrasena, fecha_nac FROM Usuario";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
@@ -208,6 +219,7 @@ public class AdminUsuariosController implements ActionListener {
                     rs.getString("nombre"),
                     rs.getString("correo"),
                     rs.getString("telefono"),
+                    rs.getString("contrasena"), // <--- Agregado el dato de la contraseña
                     rs.getString("fecha_nac")
                 });
             }
@@ -226,9 +238,8 @@ public class AdminUsuariosController implements ActionListener {
                     ventana.txtNombre.setText(tabla.getValueAt(fila, 1).toString());
                     ventana.txtCorreo.setText(tabla.getValueAt(fila, 2).toString());
                     ventana.txtTelefono.setText(tabla.getValueAt(fila, 3).toString());
-                    ventana.txtFec_Nac.setText(tabla.getValueAt(fila, 4).toString());
-                    // Opcional: limpiar contraseña por seguridad al seleccionar
-                    ventana.txtPass.setText("");
+                    ventana.txtPass.setText(tabla.getValueAt(fila, 4).toString());     // <--- Columna 4: Contraseña
+                    ventana.txtFec_Nac.setText(tabla.getValueAt(fila, 5).toString()); // <--- Columna 5: Fecha Nac.
                 }
             }
         });
@@ -272,6 +283,13 @@ public class AdminUsuariosController implements ActionListener {
     private void abrirVentanaReporte() {
         FrmReporte frm = new FrmReporte();
         new ReporteController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+    private void abrirVentanaMetas() {
+        FrmMetas frm = new FrmMetas();
+        new MetasController(frm, this.idUsuario);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         ventana.dispose();

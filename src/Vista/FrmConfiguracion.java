@@ -40,6 +40,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         btnConfiguracion = new javax.swing.JButton();
         btnEgreso = new javax.swing.JButton();
         btnAdminUsuarios = new javax.swing.JButton();
+        btnMeta = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -144,11 +145,18 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         btnAdminUsuarios.setBorder(null);
         btnAdminUsuarios.addActionListener(this::btnAdminUsuariosActionPerformed);
 
+        btnMeta.setBackground(new java.awt.Color(12, 3, 0));
+        btnMeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnMeta.setForeground(new java.awt.Color(255, 255, 255));
+        btnMeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono_meta.png"))); // NOI18N
+        btnMeta.setText("Metas de ahorro");
+        btnMeta.setBorder(null);
+        btnMeta.addActionListener(this::btnMetaActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +173,11 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                             .addComponent(btnReporte)
                             .addComponent(btnPrincipal)
                             .addComponent(btnEgreso)
-                            .addComponent(btnAdminUsuarios))
+                            .addComponent(btnAdminUsuarios)
+                            .addComponent(btnMeta))
                         .addGap(0, 119, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,10 +199,12 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnReporte)
                 .addGap(18, 18, 18)
+                .addComponent(btnMeta)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAdminUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -352,6 +364,10 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdminUsuariosActionPerformed
 
+    private void btnMetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMetaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -384,6 +400,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     public javax.swing.JButton btnEditarPerfil;
     public javax.swing.JButton btnEgreso;
     public javax.swing.JButton btnIngreso;
+    public javax.swing.JButton btnMeta;
     public javax.swing.JButton btnPrincipal;
     public javax.swing.JButton btnReporte;
     private javax.swing.JLabel jLabel23;
