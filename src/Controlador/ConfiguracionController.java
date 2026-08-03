@@ -26,13 +26,19 @@ public class ConfiguracionController implements ActionListener {
         // Botón principal de la vista
         this.ventana.btnEditarPerfil.addActionListener(this);
 
-        // Botones de navegación
+        // Botones de navegación 
         this.ventana.btnPrincipal.addActionListener(this);
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
-
+        
+        if (this.idUsuario == 1) {
+        this.ventana.btnAdminUsuarios.setVisible(true);
+        this.ventana.btnAdminUsuarios.addActionListener(this);
+        } else {
+            this.ventana.btnAdminUsuarios.setVisible(false);
+        }
         // Cargamos los datos en los txt apenas se abre la ventana
         cargarDatosUsuario();
     }

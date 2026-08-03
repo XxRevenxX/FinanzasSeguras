@@ -490,9 +490,9 @@
                       <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cmbTipo4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnGuardar4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                      <EmptySpace pref="209" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnBorrar" alignment="3" min="-2" max="-2" attributes="0"/>

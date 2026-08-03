@@ -25,10 +25,18 @@ public class IngresoController implements ActionListener {
         this.ventana.btnActualizar.addActionListener(this);
         this.ventana.btnBorrar.addActionListener(this);
         this.ventana.btnLimpiar.addActionListener(this);
+        
         //Botones del menu izquierdo
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
+        
+        if (this.idUsuario == 1) {
+        this.ventana.btnAdminUsuarios.setVisible(true);
+        this.ventana.btnAdminUsuarios.addActionListener(this);
+        } else {
+            this.ventana.btnAdminUsuarios.setVisible(false);
+        }
         
         // Llenamos la tabla al abrir la ventana
         mostrarIngresos();

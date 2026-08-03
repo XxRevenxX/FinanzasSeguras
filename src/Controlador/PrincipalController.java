@@ -20,10 +20,17 @@ public class PrincipalController implements ActionListener {
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
-        
-        // Botones adicionales activados (asegúrate de que sean public en FrmPrincipal)
-        // this.ventana.btnConfiguracion.addActionListener(this); 
+        this.ventana.btnConfiguracion.addActionListener(this); 
         this.ventana.btnCerrarSesion.addActionListener(this);
+        
+        if (this.idUsuario == 1) {
+            // Si es el usuario 1, mostramos el botón y lo hacemos funcional
+            this.ventana.btnAdminUsuarios.setVisible(true);
+            this.ventana.btnAdminUsuarios.addActionListener(this);
+        } else {
+            // Si es cualquier otro usuario, lo desaparecemos de la vista
+            this.ventana.btnAdminUsuarios.setVisible(false);
+        }
     }
 
     @Override

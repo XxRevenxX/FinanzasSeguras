@@ -432,10 +432,10 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtConcepto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtMonto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtFecha" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtFecha1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCorreo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPass" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -455,7 +455,7 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txtFecha2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFec_Nac" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -469,23 +469,23 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtConcepto" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNombre" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtMonto" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCorreo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFecha" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTelefono" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFecha1" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPass" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFecha2" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFec_Nac" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="113" max="32767" attributes="0"/>
                       <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
@@ -505,10 +505,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Concepto"/>
+                <Property name="text" type="java.lang.String" value="Nombre Completo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtConcepto">
+            <Component class="javax.swing.JTextField" name="txtNombre">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -518,10 +518,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Monto"/>
+                <Property name="text" type="java.lang.String" value="Correo Electronico"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtMonto">
+            <Component class="javax.swing.JTextField" name="txtCorreo">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -531,12 +531,12 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Fecha"/>
+                <Property name="text" type="java.lang.String" value="Telefono"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFecha">
+            <Component class="javax.swing.JTextField" name="txtTelefono">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonoActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -547,7 +547,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tipo de Ingreso"/>
+                <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnGuardar">
@@ -629,9 +629,9 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFecha1">
+            <Component class="javax.swing.JTextField" name="txtPass">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFecha1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPassActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -642,12 +642,12 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Fecha de Nacimiento"/>
+                <Property name="text" type="java.lang.String" value="Fecha Nacimiento"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFecha2">
+            <Component class="javax.swing.JTextField" name="txtFec_Nac">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFecha2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFec_NacActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

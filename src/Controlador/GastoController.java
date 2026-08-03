@@ -31,6 +31,13 @@ public class GastoController implements ActionListener {
         this.ventana.btnReporte.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
         
+        if (this.idUsuario == 1) {
+        this.ventana.btnAdminUsuarios.setVisible(true);
+        this.ventana.btnAdminUsuarios.addActionListener(this);
+        } else {
+            this.ventana.btnAdminUsuarios.setVisible(false);
+        }
+        
         mostrarGastos();
     }
 

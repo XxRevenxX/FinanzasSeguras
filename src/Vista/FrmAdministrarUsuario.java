@@ -45,20 +45,20 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtConcepto = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtMonto = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        txtFecha1 = new javax.swing.JTextField();
+        txtPass = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtFecha2 = new javax.swing.JTextField();
+        txtFec_Nac = new javax.swing.JTextField();
         paneTabla = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -214,18 +214,18 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 165, 105)));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Concepto");
+        jLabel1.setText("Nombre Completo");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Monto");
+        jLabel2.setText("Correo Electronico");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Fecha");
+        jLabel3.setText("Telefono");
 
-        txtFecha.addActionListener(this::txtFechaActionPerformed);
+        txtTelefono.addActionListener(this::txtTelefonoActionPerformed);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Tipo de Ingreso");
+        jLabel4.setText("Contraseña");
 
         btnGuardar.setBackground(new java.awt.Color(26, 17, 14));
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -251,12 +251,12 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
-        txtFecha1.addActionListener(this::txtFecha1ActionPerformed);
+        txtPass.addActionListener(this::txtPassActionPerformed);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Fecha de Nacimiento");
+        jLabel5.setText("Fecha Nacimiento");
 
-        txtFecha2.addActionListener(this::txtFecha2ActionPerformed);
+        txtFec_Nac.addActionListener(this::txtFec_NacActionPerformed);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -265,10 +265,10 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtConcepto)
-                    .addComponent(txtMonto)
-                    .addComponent(txtFecha)
-                    .addComponent(txtFecha1)
+                    .addComponent(txtNombre)
+                    .addComponent(txtCorreo)
+                    .addComponent(txtTelefono)
+                    .addComponent(txtPass)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -285,7 +285,7 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
                                 .addComponent(btnLimpiar))
                             .addComponent(jLabel5))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtFecha2))
+                    .addComponent(txtFec_Nac))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -296,23 +296,23 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFec_Nac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
                 .addGap(52, 52, 52)
@@ -393,10 +393,9 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdminUsuariosActionPerformed
 
-    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
-        // TODO add your handling code here:
-        LocalDate.now().toString();
-    }//GEN-LAST:event_txtFechaActionPerformed
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
@@ -414,13 +413,13 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void txtFecha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFecha1ActionPerformed
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFecha1ActionPerformed
+    }//GEN-LAST:event_txtPassActionPerformed
 
-    private void txtFecha2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFecha2ActionPerformed
+    private void txtFec_NacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFec_NacActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFecha2ActionPerformed
+    }//GEN-LAST:event_txtFec_NacActionPerformed
 
     /**
      * @param args the command line arguments
@@ -475,10 +474,10 @@ public class FrmAdministrarUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JScrollPane paneTabla;
-    public javax.swing.JTextField txtConcepto;
-    public javax.swing.JTextField txtFecha;
-    public javax.swing.JTextField txtFecha1;
-    public javax.swing.JTextField txtFecha2;
-    public javax.swing.JTextField txtMonto;
+    public javax.swing.JTextField txtCorreo;
+    public javax.swing.JTextField txtFec_Nac;
+    public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtPass;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
