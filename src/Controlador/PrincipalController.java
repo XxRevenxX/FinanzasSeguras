@@ -4,6 +4,8 @@ import Vista.FrmPrincipal;
 import Vista.FrmIngreso;
 import Vista.FrmGasto;
 import Vista.FrmConfiguracion;
+import Vista.FrmReporte;
+import Vista.FrmAdministrarUsuario;
 import Vista.InicioSesion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +19,11 @@ public class PrincipalController implements ActionListener {
         this.ventana = ventana;
         this.idUsuario = idUsuario;
 
+        this.ventana.btnPrincipal.addActionListener(this);
         this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
-        this.ventana.btnConfiguracion.addActionListener(this); 
+        this.ventana.btnConfiguracion.addActionListener(this);
         this.ventana.btnCerrarSesion.addActionListener(this);
         
         if (this.idUsuario == 1) {
@@ -52,7 +55,11 @@ public class PrincipalController implements ActionListener {
         }
 
         if (e.getSource() == ventana.btnReporte) {
-            JOptionPane.showMessageDialog(ventana, "Módulo de Reportes próximamente.");
+            FrmReporte frmReporte = new FrmReporte();
+            new ReporteController(frmReporte, this.idUsuario);
+            frmReporte.setLocationRelativeTo(null);
+            frmReporte.setVisible(true);
+            ventana.dispose();
         }
 
         if (e.getSource() == ventana.btnConfiguracion) {
@@ -60,6 +67,14 @@ public class PrincipalController implements ActionListener {
             new ConfiguracionController(frmConfig, this.idUsuario);
             frmConfig.setLocationRelativeTo(null);
             frmConfig.setVisible(true);
+            ventana.dispose();
+        }
+
+        if (e.getSource() == ventana.btnAdminUsuarios) {
+            FrmAdministrarUsuario frmAdmin = new FrmAdministrarUsuario();
+            new AdminUsuariosController(frmAdmin, this.idUsuario);
+            frmAdmin.setLocationRelativeTo(null);
+            frmAdmin.setVisible(true);
             ventana.dispose();
         }
 

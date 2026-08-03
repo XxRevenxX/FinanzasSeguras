@@ -9,36 +9,41 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import Vista.FrmIngreso;
 import Vista.FrmGasto;
+import Vista.FrmPrincipal;
+import Vista.FrmConfiguracion;
+import Vista.FrmReporte;
+import Vista.FrmAdministrarUsuario;
+import Vista.InicioSesion;
 import Conexion.ConexionDB;
-import Controlador.GastoController;
 
 public class IngresoController implements ActionListener {
     private FrmIngreso ventana;
-    private int idUsuario; // Aquí guardamos de quién es la sesión actual
-    private int idSeleccionado = -1; // Aquí guardamos el ID del ingreso que se toque en la tabla
+    private int idUsuario;
+    private int idSeleccionado = -1;
 
     public IngresoController(FrmIngreso ventana, int idUsuario) {
         this.ventana = ventana;
         this.idUsuario = idUsuario;
-        //Botones del CRUD
+        
         this.ventana.btnGuardar.addActionListener(this);
         this.ventana.btnActualizar.addActionListener(this);
         this.ventana.btnBorrar.addActionListener(this);
         this.ventana.btnLimpiar.addActionListener(this);
         
-        //Botones del menu izquierdo
+        this.ventana.btnPrincipal.addActionListener(this);
+        this.ventana.btnIngreso.addActionListener(this);
         this.ventana.btnEgreso.addActionListener(this);
-        this.ventana.btnCerrarSesion.addActionListener(this);
         this.ventana.btnReporte.addActionListener(this);
+        this.ventana.btnConfiguracion.addActionListener(this);
+        this.ventana.btnCerrarSesion.addActionListener(this);
         
         if (this.idUsuario == 1) {
-        this.ventana.btnAdminUsuarios.setVisible(true);
-        this.ventana.btnAdminUsuarios.addActionListener(this);
+            this.ventana.btnAdminUsuarios.setVisible(true);
+            this.ventana.btnAdminUsuarios.addActionListener(this);
         } else {
             this.ventana.btnAdminUsuarios.setVisible(false);
         }
-        
-        // Llenamos la tabla al abrir la ventana
+
         mostrarIngresos();
     }
 
@@ -56,41 +61,49 @@ public class IngresoController implements ActionListener {
         if (e.getSource() == ventana.btnLimpiar){
             limpiarCampos();
         }
+        if (e.getSource() == ventana.btnPrincipal) {
+            abrirMenuPrincipal();
+        }
+        if (e.getSource() == ventana.btnIngreso) {
+            JOptionPane.showMessageDialog(ventana, "Ya te encuentras en Registro de Ingreso.");
+        }
         if (e.getSource() == ventana.btnEgreso) {
             abrirVentanaGasto();
+        }
+        if (e.getSource() == ventana.btnReporte) {
+            abrirVentanaReporte();
+        }
+        if (e.getSource() == ventana.btnConfiguracion) {
+            abrirVentanaConfiguracion();
+        }
+        if (e.getSource() == ventana.btnAdminUsuarios) {
+            abrirVentanaAdmin();
         }
         if (e.getSource() == ventana.btnCerrarSesion) {
             cerrarSesion();
         }
     }
-    
-    //MÉTODOS DE LOS BOTONES
 
     private void guardarRegistro() {
         try {
             double monto = Double.parseDouble(ventana.txtMonto.getText().trim());
-            
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
-            
             String sql = "INSERT INTO Ingreso (concepto, monto, fecha, tipo_ingreso, id_usuario) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            
             ps.setString(1, ventana.txtConcepto.getText().trim());
             ps.setDouble(2, monto);
             ps.setString(3, ventana.txtFecha.getText().trim());
             ps.setString(4, ventana.cmbTipo.getSelectedItem().toString());
-            ps.setInt(5, this.idUsuario); // Metemos el ID del usuario
-            
+            ps.setInt(5, this.idUsuario);
             ps.executeUpdate();
             con.close();
 
             JOptionPane.showMessageDialog(ventana, "¡Guardado con éxito!");
             limpiarCampos();
             mostrarIngresos();
-            
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(ventana, "Error: El monto debe ser un número (ejemplo: 150.00)");
+            JOptionPane.showMessageDialog(ventana, "Error: El monto debe ser un número.");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(ventana, "Error de Base de Datos: " + ex.getMessage());
         }
@@ -98,33 +111,19 @@ public class IngresoController implements ActionListener {
 
     private void actualizarRegistro() {
         if (idSeleccionado == -1) {
-            JOptionPane.showMessageDialog(ventana, "Por favor, selecciona un registro de la tabla para actualizar.");
+            JOptionPane.showMessageDialog(ventana, "Por favor, selecciona un registro de la tabla.");
             return;
         }
-        
-        String concepto = ventana.txtConcepto.getText().trim();
-        String montoStr = ventana.txtMonto.getText().trim();
-        String fecha = ventana.txtFecha.getText().trim();
-        String tipo = ventana.cmbTipo.getSelectedItem().toString();
-        
-        if (concepto.isEmpty() || montoStr.isEmpty()) {
-           JOptionPane.showMessageDialog(ventana, "Completa todos los campos");
-           return;
-        }
-
         try {
-            double monto = Double.parseDouble(montoStr);
-            
+            double monto = Double.parseDouble(ventana.txtMonto.getText().trim());
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
-            
             String sql = "UPDATE Ingreso SET concepto=?, monto=?, fecha=?, tipo_ingreso=? WHERE id_ingreso=? AND id_usuario=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, concepto);
+            ps.setString(1, ventana.txtConcepto.getText().trim());
             ps.setDouble(2, monto);
-            ps.setString(3, fecha);
-            ps.setString(4, tipo);
+            ps.setString(3, ventana.txtFecha.getText().trim());
+            ps.setString(4, ventana.cmbTipo.getSelectedItem().toString());
             ps.setInt(5, idSeleccionado);
             ps.setInt(6, this.idUsuario);
             
@@ -135,42 +134,33 @@ public class IngresoController implements ActionListener {
                 JOptionPane.showMessageDialog(ventana, "Actualización exitosa");
                 limpiarCampos();
                 mostrarIngresos();
-            } else {
-                JOptionPane.showMessageDialog(ventana, "Error al actualizar.");
             }
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(ventana, "Error: El monto debe ser numérico.");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(ventana, "Error BD: " + ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(ventana, "Error al actualizar: " + ex.getMessage());
         }
     }
 
     private void eliminarRegistro() {
         if (idSeleccionado == -1) {
-            JOptionPane.showMessageDialog(ventana, "Selecciona un registro de la tabla para eliminar.");
+            JOptionPane.showMessageDialog(ventana, "Selecciona un registro para eliminar.");
             return;
         }
-        
         int confirmacion = JOptionPane.showConfirmDialog(ventana, "¿Deseas eliminar este registro?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (confirmacion != JOptionPane.YES_OPTION) return;
         
         try {
             ConexionDB conDb = new ConexionDB();
             Connection con = conDb.conectar();
-            
             String sql = "DELETE FROM Ingreso WHERE id_ingreso=? AND id_usuario=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idSeleccionado);
             ps.setInt(2, this.idUsuario);
-            
-            int filas = ps.executeUpdate();
+            ps.executeUpdate();
             con.close();
 
-            if (filas > 0) {
-                JOptionPane.showMessageDialog(ventana, "Eliminación exitosa");
-                limpiarCampos();
-                mostrarIngresos();
-            }
+            JOptionPane.showMessageDialog(ventana, "Eliminación exitosa");
+            limpiarCampos();
+            mostrarIngresos();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(ventana, "Error BD: " + ex.getMessage());
         }
@@ -184,25 +174,9 @@ public class IngresoController implements ActionListener {
         ventana.cmbTipo.setSelectedIndex(0);
     }
     
-    private void abrirVentanaGasto() {
-        FrmGasto ventanaGasto = new FrmGasto();
-        new GastoController(ventanaGasto, this.idUsuario);
-        ventanaGasto.setLocationRelativeTo(null);
-        ventanaGasto.setVisible(true);
-        ventana.dispose();
-    }
-
-    private void cerrarSesion() {
-        Vista.InicioSesion ventanaLogin = new Vista.InicioSesion();
-        InicioSesionController controlador = new InicioSesionController(ventanaLogin);
-        ventanaLogin.setLocationRelativeTo(null);
-        ventanaLogin.setVisible(true);
-        ventana.dispose();
-    }
-    // --- MÉTODO PARA DIBUJAR LA TABLA ---
     private void mostrarIngresos() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID"); // Ocultaremos la columna del ID
+        modelo.addColumn("ID");
         modelo.addColumn("Concepto");
         modelo.addColumn("Monto");
         modelo.addColumn("Fecha");
@@ -214,30 +188,22 @@ public class IngresoController implements ActionListener {
             String sql = "SELECT id_ingreso, concepto, monto, fecha, tipo_ingreso FROM Ingreso WHERE id_usuario = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, this.idUsuario);
-            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 modelo.addRow(new Object[]{
-                    rs.getInt("id_ingreso"), 
-                    rs.getString("concepto"), 
-                    rs.getDouble("monto"), 
-                    rs.getString("fecha"), 
-                    rs.getString("tipo_ingreso")
+                    rs.getInt("id_ingreso"), rs.getString("concepto"), 
+                    rs.getDouble("monto"), rs.getString("fecha"), rs.getString("tipo_ingreso")
                 });
             }
             con.close();
-        } catch (SQLException e) { 
-            e.printStackTrace(); 
-        }
+        } catch (SQLException e) { e.printStackTrace(); }
         
-        // Creamos la tabla
         JTable tabla = new JTable(modelo);
         tabla.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 int fila = tabla.getSelectedRow();
                 if (fila >= 0) {
-                    // Llenamos los campos y guardamos el ID
                     idSeleccionado = Integer.parseInt(tabla.getValueAt(fila, 0).toString());
                     ventana.txtConcepto.setText(tabla.getValueAt(fila, 1).toString());
                     ventana.txtMonto.setText(tabla.getValueAt(fila, 2).toString());
@@ -246,7 +212,54 @@ public class IngresoController implements ActionListener {
                 }
             }
         });
-        
         ventana.paneTabla.setViewportView(tabla);
+    }
+
+    private void abrirMenuPrincipal() {
+        FrmPrincipal frm = new FrmPrincipal();
+        new PrincipalController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+
+    private void abrirVentanaGasto() {
+        FrmGasto frm = new FrmGasto();
+        new GastoController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+
+    private void abrirVentanaReporte() {
+        FrmReporte frm = new FrmReporte();
+        new ReporteController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+
+    private void abrirVentanaConfiguracion() {
+        FrmConfiguracion frm = new FrmConfiguracion();
+        new ConfiguracionController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+
+    private void abrirVentanaAdmin() {
+        FrmAdministrarUsuario frm = new FrmAdministrarUsuario();
+        new AdminUsuariosController(frm, this.idUsuario);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        ventana.dispose();
+    }
+
+    private void cerrarSesion() {
+        InicioSesion ventanaLogin = new InicioSesion();
+        new InicioSesionController(ventanaLogin);
+        ventanaLogin.setLocationRelativeTo(null);
+        ventanaLogin.setVisible(true);
+        ventana.dispose();
     }
 }
