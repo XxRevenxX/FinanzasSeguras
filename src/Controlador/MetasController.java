@@ -53,19 +53,45 @@ public class MetasController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == ventana.btnGuardar) guardarMeta();
-        if (e.getSource() == ventana.btnAgregar) anadirMontoMeta();
-        if (e.getSource() == ventana.btnActualizar) actualizarMeta();
-        if (e.getSource() == ventana.btnBorrar) eliminarMeta();
-        if (e.getSource() == ventana.btnLimpiar) limpiarCampos();
-        if (e.getSource() == ventana.btnPrincipal) abrirMenuPrincipal();
-        if (e.getSource() == ventana.btnIngreso) abrirVentanaIngreso();
-        if (e.getSource() == ventana.btnEgreso) abrirVentanaGasto();
-        if (e.getSource() == ventana.btnReporte) abrirVentanaReporte();
-        if (e.getSource() == ventana.btnConfiguracion) abrirVentanaConfiguracion();
-        if (e.getSource() == ventana.btnMeta) JOptionPane.showMessageDialog(ventana, "Ya te encuentras en Metas de ahorro.");
-        if (e.getSource() == ventana.btnAdminUsuarios) abrirVentanaAdmin();
-        if (e.getSource() == ventana.btnCerrarSesion) cerrarSesion();
+        if (e.getSource() == ventana.btnGuardar){
+            guardarMeta();
+        }
+        if (e.getSource() == ventana.btnAgregar){
+            anadirMontoMeta();
+        }
+        if (e.getSource() == ventana.btnActualizar){
+            actualizarMeta();
+        }
+        if (e.getSource() == ventana.btnBorrar){
+            eliminarMeta();
+        }
+        if (e.getSource() == ventana.btnLimpiar){
+            limpiarCampos();
+        }
+        if (e.getSource() == ventana.btnPrincipal){
+            abrirMenuPrincipal();
+        }
+        if (e.getSource() == ventana.btnIngreso){
+            abrirVentanaIngreso();
+        }
+        if (e.getSource() == ventana.btnEgreso){
+            abrirVentanaGasto();
+        }
+        if (e.getSource() == ventana.btnReporte){
+            abrirVentanaReporte();
+        }
+        if (e.getSource() == ventana.btnConfiguracion){
+            abrirVentanaConfiguracion();
+        }
+        if (e.getSource() == ventana.btnMeta){
+            JOptionPane.showMessageDialog(ventana, "Ya te encuentras en Metas de ahorro.");
+        }
+        if (e.getSource() == ventana.btnAdminUsuarios){
+            abrirVentanaAdmin();
+        }
+        if (e.getSource() == ventana.btnCerrarSesion){
+            cerrarSesion();
+        }
     }
 
     private void guardarMeta() {
@@ -151,6 +177,7 @@ public class MetasController implements ActionListener {
 
             JOptionPane.showMessageDialog(ventana, "¡Fondos agregados a la meta con éxito!");
             ventana.txtAñadir.setText("");
+            limpiarCampos();
             mostrarMetas();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(ventana, "El valor a añadir debe ser numérico.");

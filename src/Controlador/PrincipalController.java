@@ -70,7 +70,7 @@ public class PrincipalController implements ActionListener {
                 totalGasto = rsGasto.getDouble(1);
             }
             
-            // 3. Sumar ahorros (CORREGIDO: ahora saca el total real de la tabla 'ahorro')
+            // 3. Sumar ahorros 
             String sqlAhorro = "SELECT COALESCE(SUM(monto), 0) FROM ahorro WHERE id_usuario = ?";
             PreparedStatement psAhorro = con.prepareStatement(sqlAhorro);
             psAhorro.setInt(1, this.idUsuario);

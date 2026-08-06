@@ -55,7 +55,7 @@ public class InicioSesionController implements ActionListener {
             ventanaPrincipal.setVisible(true);
             ventanaLogin.dispose();
         }else {
-            JOptionPane.showMessageDialog(ventanaLogin, "Correo o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(ventanaLogin, "Datos de inicio de Sesion no validos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
